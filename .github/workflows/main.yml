@@ -37,7 +37,8 @@ jobs:
           ./skim root://eospublic.cern.ch//eos/root-eos/HiggsTauTauReduced/GluGluToHToTauTau.root skim_ggH.root 19.6 11467.0 0.1
       - uses: actions/upload-artifact@v7
         with:
-          name: skim_ggH.root
+          name: skim_ggH
+          path: skim_ggH.root
 
   plot:
     needs: skim
@@ -50,4 +51,8 @@ jobs:
       - name: plot
         run: |
           python3 histograms.py skim_ggH.root ggH hist_ggH.root
+      - uses: actions/upload-artifact@v7
+        with:
+          name: histograms
+          path: hist_ggH.root
           
